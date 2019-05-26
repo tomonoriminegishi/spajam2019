@@ -64,26 +64,26 @@ Elastic Trancecoderにデフォルトで用意されているプリセットを�
 コピーしたプリセットの設定を編集します。
 
 1. 名前をわかりやすい名前に変更してください。
-2. ウォーターマークの設定は必要ないので削除します。
+2. ウォーターマークの設定は必要ないので削除します。
 
 #### パイプラインの作成方法
 
 <img width="976" alt="スクリーンショット 2019-05-26 18 11 34" src="https://user-images.githubusercontent.com/11880332/58379678-e225ad80-7fe1-11e9-8124-aa3dc15c1c32.png">
 
-Pipeline Name：わかり易い名前をつけてください。
+Pipeline Name：わかり易い名前をつけてください。
 Input Bucket：01_create_s3_bucketで作成したバケットを指定してください。
 
 【Configuration for Amazon S3 Bucket for Transcoded Files and Playlists】
 
 Bucket：01_create_s3_bucketで作成したバケットを指定してください。
 
-Storage Class：standerd
+Storage Class：standerd
 
 【Configuration for Amazon S3 Bucket for Thumbnails】
 
 Bucket：01_create_s3_bucketで作成したバケットを指定してください。
 
-Storage Class：standerd
+Storage Class：standerd
 
 
 ```
