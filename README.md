@@ -31,7 +31,7 @@ cd 01_create_s3_bucket
 sls deploy --bucket your_bucket_name
 ```
 
-### 2.複数のgifファイルを1つのAnimation gifファイルに変換
+### 2.複数のgifファイルを1つのAnimation gifファイルに変換
 
 ```
 cd 02_create_animation_gif
@@ -41,9 +41,9 @@ sls deploy --bucket your_bucket_name
 sls s3deploy --bucket your_bucket_name
 ```
 
-`
-※ nodeのバージョンを10.xにするとうまくいかないため、node8.10を指定しています。
-`
+
+**※ nodeのバージョンを10.xにするとうまくいかないため、node8.10を指定しています。**
+
 
 ### 3.作成したAnimation gifファイルをmp4ファイルに変換
 
@@ -54,9 +54,37 @@ Elastic Trancecoderを利用して、Animation gif → mp4へ変換する。
 Elastic TrancecoderがCloudformationに対応していないようなので、
 手作業で設定する必要があります。
 
-`
-※ 手作業は良くないなぁ。
-`
+#### プリセットの作成方法
+
+デフォルトで用意されているプリセットをコピーします。
+
+<img width="976" alt="スクリーンショット 2019-05-26 17 52 26" src="https://user-images.githubusercontent.com/11880332/58379608-b655f800-7fe0-11e9-9b6d-fb7a140b9f0f.png">
+
+
+コピーしたプリセットの設定を編集します。
+
+1. 名前をわかりやすい名前に変更してください。
+2. ウォーターマークの設定は必要ないので削除します。
+
+#### パイプラインの作成方法
+
+<img width="976" alt="スクリーンショット 2019-05-26 18 11 34" src="https://user-images.githubusercontent.com/11880332/58379678-e225ad80-7fe1-11e9-8124-aa3dc15c1c32.png">
+
+Pipeline Name：わかり易い名前をつけてください。
+Input Bucket：01_create_s3_bucketで作成したバケットを指定してください。
+
+【Configuration for Amazon S3 Bucket for Transcoded Files and Playlists】
+
+Bucket：01_create_s3_bucketで作成したバケットを指定してください。
+
+Storage Class：standerd
+
+【Configuration for Amazon S3 Bucket for Thumbnails】
+
+Bucket：01_create_s3_bucketで作成したバケットを指定してください。
+
+Storage Class：standerd
+
 
 ```
 cd 03_transcode2mp4
