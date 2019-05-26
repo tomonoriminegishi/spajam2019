@@ -1,0 +1,48 @@
+service: spajam2019-publish-mp4
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${opt:profile, self:custom.defaultProfile}
+  region: ${opt:region, self:custom.defaultRegion}
+  iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - s3:GetObject
+        Resource:
+          - arn:aws:s3:::${opt:bucket}/mp4/*
+      - Effect: Allow
+        Action:
+          - iot:Connect
+          - iot:Publish
+          - iot:Subscribe
+          - iot:Receive
+          - iot:GetThingShadow
+          - iot:UpdateThingShadow
+          - iot:DeleteThingShadow
+        Resource:
+          - '*'
+
+custom:
+  defaultStage: dev
+  defaultProfile: default
+  defaultRegion: ap-northeast-1
+
+functions:
+  publishMP4:
+    handler: handler.index
+    environment:
+      REGION: ${self:provider.region}
+      IOT_ENDPOINT: ${opt:iot_endpoint}
+    events:
+      - existingS3:
+          bucket: ${opt:bucket}
+          rules:
+            - prefix: output/
+            - suffix: .mp4
+          events:
+            - s3:ObjectCreated:*
+
+plugins:
+ - serverless-plugin-existing-s3

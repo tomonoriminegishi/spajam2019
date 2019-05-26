@@ -1,0 +1,45 @@
+service: spajam2019-transcode-mp4
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${opt:profile, self:custom.defaultProfile}
+  region: ${opt:region, self:custom.defaultRegion}
+  iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - s3:GetObject
+        Resource:
+          - arn:aws:s3:::${opt:bucket}/gif/*
+
+      - Effect: Allow
+        Action:
+          - elastictranscoder:*
+        Resource:
+          - '*'
+
+custom:
+  defaultStage: dev
+  defaultProfile: default
+  defaultRegion: ap-northeast-1
+
+functions:
+  transcode2mp4:
+    handler: handler.index
+    environment:
+      REGION: ${self:provider.region}
+      PIPELINE_ID: ${opt:pipeline_id}
+      PRESET_ID: ${opt:preset_id}
+
+    events:
+      - existingS3:
+          bucket: ${opt:bucket}
+          rules:
+            - prefix: gif/
+            - suffix: .gif
+          events:
+            - s3:ObjectCreated:*
+
+plugins:
+ - serverless-plugin-existing-s3

@@ -1,0 +1,40 @@
+service: spajam2019-create-animation-gif
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${opt:profile, self:custom.defaultProfile}
+  region: ${opt:region, self:custom.defaultRegion}
+  timeout: 500
+  iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - s3:PutObject
+          - s3:GetObject
+        Resource:
+          - arn:aws:s3:::${opt:bucket}/gif/*
+          - arn:aws:s3:::${opt:bucket}/upload/*
+          - arn:aws:s3:::${opt:bucket}/uploadJson/*
+
+custom:
+  defaultStage: dev
+  defaultProfile: default
+  defaultRegion: ap-northeast-1
+
+functions:
+  createAnimationGif:
+    handler: handler.index
+    environment:
+      REGION: ${self:provider.region}
+      S3_BUCKET_NAME: ${opt:bucket}
+    events:
+      - existingS3:
+          bucket: ${opt:bucket}
+          rules:
+            - prefix: uploadJson/
+          events:
+            - s3:ObjectCreated:*
+
+plugins:
+ - serverless-plugin-existing-s3

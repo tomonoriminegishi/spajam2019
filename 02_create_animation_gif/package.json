@@ -1,0 +1,19 @@
+{
+  "name": "spajam2019",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "docker build -t lambda-build .",
+    "build": "docker run -v $(pwd)/node_modules:/test/node_modules lambda-build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.5.0",
+    "gifencoder": "^2.0.1",
+    "serverless-plugin-existing-s3": "^2.4.0",
+    "sharp": "^0.22.1"
+  }
+}

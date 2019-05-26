@@ -1,0 +1,14 @@
+{
+  "name": "04_publish_mp4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless-plugin-existing-s3": "^2.4.0"
+  }
+}
