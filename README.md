@@ -52,11 +52,11 @@ Animation gif形式だとtwitterに投稿できないようなので、さらに
 Elastic Trancecoderを利用して、Animation gif → mp4へ変換する。
 
 Elastic TrancecoderがCloudformationに対応していないようなので、
-手作業で設定する必要があります。
+**プリセットとパイプライン**を手作業で設定する必要があります。
 
 #### プリセットの作成方法
 
-デフォルトで用意されているプリセットをコピーします。
+Elastic Trancecoderにデフォルトで用意されているプリセットをコピーします。
 
 <img width="976" alt="スクリーンショット 2019-05-26 17 52 26" src="https://user-images.githubusercontent.com/11880332/58379608-b655f800-7fe0-11e9-9b6d-fb7a140b9f0f.png">
 
