@@ -1,5 +1,7 @@
 # spajam2019
-spajam2019 東京予選A 週間#
+spajam2019 東京予選A 六木本未来ラボ 「週間#(ハッシュタグ)」
+
+お題「NEWS」
 
 ## 環境
 
@@ -70,24 +72,23 @@ Elastic Trancecoderにデフォルトで用意されているプリセットを�
 
 <img width="976" alt="スクリーンショット 2019-05-26 18 11 34" src="https://user-images.githubusercontent.com/11880332/58379678-e225ad80-7fe1-11e9-8124-aa3dc15c1c32.png">
 
-Pipeline Name：わかり易い名前をつけてください。
-Input Bucket：01_create_s3_bucketで作成したバケットを指定してください。
+1. Pipeline Name：わかり易い名前をつけてください。
+2. Input Bucket：01_create_s3_bucketで作成したバケットを指定してください。
 
 【Configuration for Amazon S3 Bucket for Transcoded Files and Playlists】
 
-Bucket：01_create_s3_bucketで作成したバケットを指定してください。
-
-Storage Class：standerd
+1. Bucket：01_create_s3_bucketで作成したバケットを指定してください。
+2. Storage Class：standerd
 
 【Configuration for Amazon S3 Bucket for Thumbnails】
 
-Bucket：01_create_s3_bucketで作成したバケットを指定してください。
-
-Storage Class：standerd
+1. Bucket：01_create_s3_bucketで作成したバケットを指定してください。
+2. Storage Class：standerd
 
 
 ```
 cd 03_transcode2mp4
+npm install
 sls deploy --bucket your_bucket_name --preset_id=your_preset_id --pipeline_id=your_pipeline_id
 sls s3deploy --bucket your_bucket_name --preset_id=your_preset_id --pipeline_id=your_pipeline_id
 
@@ -101,6 +102,7 @@ Iot Core > 設定 で確認することができます。
 
 ```
 cd 04_publish_mp4
+npm install
 sls deploy --bucket your_bucket_name --iot_endpoint your_iot_endpoint
 sls s3deploy --bucket your_bucket_name --iot_endpoint your_iot_endpoint
 ```
