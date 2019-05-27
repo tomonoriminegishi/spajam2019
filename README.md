@@ -25,6 +25,11 @@ Docker version 18.09.2, build 6247962
 
 ```
 
+## アーキテクチャ
+
+![68747470733a2f2f71696974612d696d6167652d73746f72652e73332e61702d6e6f727468656173742d312e616d617a6f6e6177732e636f6d2f302f3137313938392f64313262306332662d373434622d356339332d306339652d3936646635366236393134652e706e67](https://user-images.githubusercontent.com/11880332/58420402-24c1b580-80c8-11e9-8bd9-71677cf267b0.png)
+
+
 ## バックエンド構築
 デフォルト値を設定していますので、中身を確認しながら実行してください。
 
@@ -107,4 +112,12 @@ cd 04_publish_mp4
 npm install
 sls deploy --bucket your_bucket_name --iot_endpoint your_iot_endpoint
 sls s3deploy --bucket your_bucket_name --iot_endpoint your_iot_endpoint
+```
+
+### 5.Twitter APIを利用して、ツイートを取得する
+
+```
+cd 05_get_twitter
+npm install
+sls deploy --consumerKey your_twitter_consumerKey --consumerSecret your_twitter_consumerSecret --accessToken your_twitter_accessToken --accessTokenSecret your_twitter_accessTokenSecret
 ```
