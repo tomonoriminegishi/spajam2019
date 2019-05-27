@@ -116,6 +116,14 @@ sls s3deploy --bucket your_bucket_name --iot_endpoint your_iot_endpoint
 
 ### 5.Twitter APIを利用して、ツイートを取得する
 
+Twitter APIを利用するため、あらかじめTwitter APIの利用申請が必要です。
+利用申請が承認されましたら、下記の4つのキーが必要になりますので生成してください。
+
+1. consumerKey
+2. consumerSecret
+3. accessToken
+4. accessTokenSecret
+
 ```
 cd 05_get_twitter
 npm install
